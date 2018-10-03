@@ -1,0 +1,10 @@
+<p>
+  Lazy load example:
+  <a href="https://github.com/srednicki95/am_samples/tree/master/src/app/dashboard/lazy-load"><img class="img" src="../../../assets/github-icon.png">Github link</a>
+</p>
+
+<div *ngIf="mapService.isLoaded" class="map">
+  <am-map  [_id]="'map'">
+    <!--That's very important input, without this your map don't will be show-->
+  </am-map>
+</div>

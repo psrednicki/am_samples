@@ -6,12 +6,18 @@ import {BrowserModule} from "@angular/platform-browser";
 import {RouterModule, Routes} from "@angular/router";
 import { SimplePinComponent } from './dashboard/simple-pin/simple-pin.component';
 import {AmModule, LoadMapService} from "@acaisoft/angular-azure-maps";
+import { LazyLoadComponent } from './dashboard/lazy-load/lazy-load.component';
 
 const appRoutes: Routes = [
   {
     path: 'simplepin',
     component: SimplePinComponent,
     data: { title: 'Simple Pin' }
+  },
+  {
+    path: 'lazyload',
+    component: LazyLoadComponent,
+    data: { title: 'Lazy Load' }
   },
   { path: '',
     redirectTo: '/dashboard',
@@ -24,7 +30,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     DashboardComponent,
-    SimplePinComponent
+    SimplePinComponent,
+    LazyLoadComponent
   ],
   imports: [
     BrowserModule,

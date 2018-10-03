@@ -1,0 +1,7 @@
+.map {
+  min-width: 30rem;
+  min-height: 30rem;
+  width: 50rem;
+  height: 20rem;
+  border: .4rem solid #92c7e6;
+}
