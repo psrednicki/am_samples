@@ -8,6 +8,8 @@ import { SimplePinComponent } from './dashboard/simple-pin/simple-pin.component'
 import {AmModule, LoadMapService} from "@acaisoft/angular-azure-maps";
 import { LazyLoadComponent } from './dashboard/lazy-load/lazy-load.component';
 import { CustomSpriteComponent } from './dashboard/custom-sprite/custom-sprite.component';
+import { InfoComponent } from './dashboard/info/info.component';
+import { CurrentPositionComponent } from './dashboard/current-position/current-position.component';
 
 const appRoutes: Routes = [
   {
@@ -25,6 +27,16 @@ const appRoutes: Routes = [
     component: CustomSpriteComponent,
     data: { title: 'Custom Sprite' }
   },
+  {
+    path: 'currentposition',
+    component: CurrentPositionComponent,
+    data: { title: 'Current Position' }
+  },
+  {
+    path: '',
+    component: InfoComponent,
+    data: { title: 'Info' }
+  },
 ];
 
 
@@ -35,7 +47,9 @@ const appRoutes: Routes = [
     DashboardComponent,
     SimplePinComponent,
     LazyLoadComponent,
-    CustomSpriteComponent
+    CustomSpriteComponent,
+    InfoComponent,
+    CurrentPositionComponent
   ],
   imports: [
     BrowserModule,

@@ -4,9 +4,9 @@
   </div>
   <div class="description">
     Lazy load example:
-
   </div>
 </div>
+<button (click)="getInfo()">GetInfo</button>
 
 <div *ngIf="mapService.isLoaded" class="container">
   <am-map  [_id]="'map'">

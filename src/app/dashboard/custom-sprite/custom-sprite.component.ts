@@ -25,12 +25,15 @@ export class CustomSpriteComponent implements OnInit {
 
 
   ngOnInit() {
+    // script and styles loaded
     this.mapService.load().toPromise().then(() => {
+      // set key
       atlas.setSubscriptionKey(this.key);
     })
   }
 
   getPos($event) {
+    // emitting geopostion
     console.log('GEOCORDS: ', $event)
   }
 
@@ -39,7 +42,7 @@ export class CustomSpriteComponent implements OnInit {
   }
 
   addSprite() {
-
+    // Add sprite to map as icon
     this.maper.map.imageSprite.add('my-pin', '../../../assets/eye-crossed.svg')
     this.maper.map.imageSprite.add('git', '../../../assets/github-small.svg').then(()=> {
       this.init()
