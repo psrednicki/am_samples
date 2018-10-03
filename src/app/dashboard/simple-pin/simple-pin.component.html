@@ -1,0 +1,29 @@
+<p>
+  Hello <span>
+<button (click)="click()">CLCK</button>
+<button (click)="click2()">CLCK2</button>
+</span>
+</p>
+<div class="container"  *ngIf="mapService.isLoaded">
+  <am-map #maper
+          [initialConfig]="config"
+          [_id]="'id'"
+          (onMapClick)="getPos($event)" >
+
+
+    <ng-template amPopup
+                 let-dataElement="dataElement">
+      <div [ngSwitch]="dataElement.type">
+        <div *ngSwitchCase="'DataCenter'" class="dc_container">
+          <div class="name">{{ dataElement.name}}</div>
+          <div [ngStyle]="{'color':dataElement.status === 'Online' ? 'blue' : 'red'}"> {{ dataElement.status }}</div>
+        </div>
+        <div *ngSwitchCase="'Office'" >
+          <div class="name">{{ dataElement.name}}</div>
+          <!--<div> Region: {{ dataElement.region}} </div>-->
+
+        </div></div>
+    </ng-template>
+
+  </am-map>
+</div>

@@ -1,0 +1,21 @@
+.container {
+  min-width: 10rem;
+  min-height: 10rem;
+  border: .4rem solid #5ea06f;
+  margin: 1rem 1rem;
+  width: 50rem;
+  height: 20rem;
+  position: fixed;
+}
+
+
+.dc_container {
+
+}
+
+.dc_container .name {
+  margin-top: .5rem;
+  color: black;
+  font-weight: 600;
+  font-size: 1.2rem ;
+}
