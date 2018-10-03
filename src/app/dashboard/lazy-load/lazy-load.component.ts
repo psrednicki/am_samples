@@ -11,7 +11,7 @@ export class LazyLoadComponent implements OnInit {
 
   key: string = 'tTk1JVEaeNvDkxxnxHm9cYaCvqlOq1u-fXTvyXn2XkA';
 
-  constructor(private mapService: LoadMapService) { }
+  constructor(public mapService: LoadMapService) { }
 
   ngOnInit() {
     this.mapService.load().toPromise().then(() => {
