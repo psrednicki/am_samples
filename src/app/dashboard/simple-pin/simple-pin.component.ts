@@ -26,7 +26,7 @@ export class SimplePinComponent implements OnInit {
     localization:
       {
         lnt: 20,
-        lng: 30
+        lng: 20
       }
   },{
     name: 'DataCenter2',
@@ -87,12 +87,20 @@ export class SimplePinComponent implements OnInit {
       this.featuresArray.push(this.mergeDataPoint(value))
     });
     this.maper.createPoints(this.featuresArray);
-    console.log(this.featuresArray)
+    console.log('Thats your features Array: ', this.featuresArray)
     this.maper.createPopups(this.featuresArray);
   }
 
-  click() {
+  init() {
     this.initPoint()
+  }
+
+  updatePoints() {
+    this.maper.updatePoints(this.featuresArray)
+  }
+
+  removePoints() {
+    this.maper.map.removeLayers(this.maper.findUniqueLayers(this.featuresArray))
   }
 
 
@@ -121,7 +129,7 @@ export class SimplePinComponent implements OnInit {
     const pinOptions: PinLayerOptions = {
       name: item,
       textFont: 'SegoeUi-Bold',
-      textOffset: [0, 17],
+      textOffset: [0, 25],
     };
     return pinOptions;
   }

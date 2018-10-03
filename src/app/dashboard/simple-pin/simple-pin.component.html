@@ -3,7 +3,9 @@
 <a href="https://github.com/srednicki95/am_samples/tree/master/src/app/dashboard/simple-pin"><img class="img" src="../../../assets/github-icon.png"> GitHubLink</a>
 </p>
 <span>
-<button (click)="click()">Load PINS</button>
+<button (click)="init()">Load Pins</button>
+<button (click)="updatePoints()">Update Pins</button>
+<button (click)="removePoints()">Remove Pins </button>
 </span>
 
 <div class="container"  *ngIf="mapService.isLoaded">
@@ -22,8 +24,6 @@
         </div>
         <div *ngSwitchCase="'Office'" class="office_container">
           <div class="name">{{ dataElement.name}}</div>
-          <!--<div> Region: {{ dataElement.region}} </div>-->
-
         </div></div>
     </ng-template>
 
