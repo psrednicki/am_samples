@@ -1,0 +1,18 @@
+<div class="example_header">
+  <div class="git">
+    <a href="https://github.com/srednicki95/am_samples/tree/master/src/app/dashboard/lazy-load"><img class="img" src="../../../assets/github-icon.png">GitHub link</a>
+  </div>
+  <div class="description">
+    Lazy load example:
+  </div>
+</div>
+<button (click)="addHtml()">DEFAULT PIN</button>
+<span>ACTIVE HTML OBJECT: {{pinCounter}}</span>
+<button (click)="addMarker()">MARKER</button>
+<span>ACTIVE MARKER OBJECT: {{markerCounter}}</span>
+<button (click)="removeIntevals()">Remove intevals</button>
+
+<div *ngIf="mapService.isLoaded" class="container">
+  <am-map  [_id]="'map'" #maper>
+  </am-map>
+</div>
