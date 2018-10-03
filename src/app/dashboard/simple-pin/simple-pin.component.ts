@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AtlasMapComponent, LoadMapService} from "@acaisoft/angular-azure-maps";
 import {AmFeature} from "@acaisoft/angular-azure-maps/src/azure-map/interfaces/am-feature";
 import {dataMock} from "../../data";
@@ -8,7 +8,7 @@ import {dataMock} from "../../data";
   templateUrl: './simple-pin.component.html',
   styleUrls: ['./simple-pin.component.css']
 })
-export class SimplePinComponent implements OnInit {
+export class SimplePinComponent implements OnInit, OnDestroy {
 
   @ViewChild('maper') maper: AtlasMapComponent;
 
@@ -96,6 +96,10 @@ export class SimplePinComponent implements OnInit {
       layer: data.type,
       pinConfig: this.dataLayerOptions(data.type)
     } as AmFeature
+  }
+
+  ngOnDestroy(): void {
+    this.maper.map.remove()
   }
 
 

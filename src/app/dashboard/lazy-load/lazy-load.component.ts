@@ -1,13 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {LoadMapService} from "@acaisoft/angular-azure-maps";
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AtlasMapComponent, LoadMapService} from "@acaisoft/angular-azure-maps";
 
 @Component({
   selector: 'app-lazy-load',
   templateUrl: './lazy-load.component.html',
   styleUrls: ['./lazy-load.component.css']
 })
-export class LazyLoadComponent implements OnInit {
+export class LazyLoadComponent implements OnInit, OnDestroy {
 
+
+  @ViewChild('maper') maper: AtlasMapComponent;
   // key is nessecary to show your map
   key: string = 'tTk1JVEaeNvDkxxnxHm9cYaCvqlOq1u-fXTvyXn2XkA';
 
@@ -24,6 +26,10 @@ export class LazyLoadComponent implements OnInit {
   getInfo() {
     // Check what atlas have
     console.log('ATLAS:', atlas);
+  }
+
+  ngOnDestroy(): void {
+    this.maper.map.remove()
   }
 
 }

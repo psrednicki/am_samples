@@ -8,12 +8,12 @@
   </div>
 </div>
 <span>
-  <button (click)="addSprite()">Load Sprites</button>
   <button (click)="removeSprite()">Remove Sprites</button>
-<div class="container"  *ngIf="mapService.isLoaded">
-  <am-map #maper
+<div class="container" *ngIf="mapService.isLoaded">
+  <am-map  #maper
           [initialConfig]="config"
           [_id]="'id'"
-          (onMapClick)="getPos($event)" >
+          (onMapClick)="getPos($event)"
+           (loaded)="mapLoaded()" >
   </am-map>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AtlasMapComponent, LoadMapService} from "@acaisoft/angular-azure-maps";
 
 @Component({
@@ -6,7 +6,7 @@ import {AtlasMapComponent, LoadMapService} from "@acaisoft/angular-azure-maps";
   templateUrl: './current-position.component.html',
   styleUrls: ['./current-position.component.css']
 })
-export class CurrentPositionComponent implements OnInit {
+export class CurrentPositionComponent implements OnInit, OnDestroy {
 
   @ViewChild('maper') maper: AtlasMapComponent;
 
@@ -75,5 +75,9 @@ export class CurrentPositionComponent implements OnInit {
             break;
         }
       })
+  }
+
+  ngOnDestroy(): void {
+    this.maper.removeMap()
   }
 }
