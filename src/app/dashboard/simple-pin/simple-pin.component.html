@@ -18,9 +18,9 @@
       <div [ngSwitch]="dataElement.type">
         <div *ngSwitchCase="'DataCenter'" class="dc_container">
           <div class="name">{{ dataElement.name}}</div>
-          <div [ngStyle]="{'color':dataElement.status === 'Online' ? 'blue' : 'red'}"> {{ dataElement.status }}</div>
+          <div class="status" [ngStyle]="{'color':dataElement.status === 'Online' ? 'blue' : 'red'}"> {{ dataElement.status }}</div>
         </div>
-        <div *ngSwitchCase="'Office'" >
+        <div *ngSwitchCase="'Office'" class="office_container">
           <div class="name">{{ dataElement.name}}</div>
           <!--<div> Region: {{ dataElement.region}} </div>-->
 

@@ -10,13 +10,20 @@
 }
 
 
-.dc_container {
-
+.office_container .name {
+  margin-top: .3rem;
+  color: #44889d;
+  font-weight: 600;
+  font-size: 1.2rem ;
 }
 
 .dc_container .name {
-  margin-top: .5rem;
+  margin-top: .3rem;
   color: black;
   font-weight: 600;
   font-size: 1.2rem ;
+}
+
+.dc_container .status {
+  text-align: center;
 }

@@ -53,16 +53,16 @@ export class SimplePinComponent implements OnInit {
     localization:
       {
         lnt: -24.21,
-        lng: -80.12
+        lng: 50.12
       }
   },{
     name: 'Head Ofice',
-    type: 'DataCenter',
+    type: 'Office',
     status: 'in-work',
     localization:
       {
-        lnt: 120,
-        lng: 87
+        lnt: 30,
+        lng: 45
       }
   }]
 
@@ -71,7 +71,7 @@ export class SimplePinComponent implements OnInit {
 
   ngOnInit() {
     /**
-     * Thats way to lazy load map
+     * That way to lazy load map
      */
     this.mapService.load().toPromise().then(() => {
       atlas.setSubscriptionKey(this.key);
@@ -97,10 +97,19 @@ export class SimplePinComponent implements OnInit {
 
 
   dataPointsInit(data): atlas.data.Feature {
-    const pos = new atlas.data.Position(data.localization.lnt, data.localization.lng);
+    /**
+     * Azure notation of position: [LONGITUDE, LATITUDE] [-180, 180] [-90, 90]
+     * @type atlas.data.Position
+     */
+    const pos = new atlas.data.Position(data.localization.lng, data.localization.lnt);
     const point = new atlas.data.Point(pos);
+    let icon = 'pin-red'
+    if(data.type === 'Office')
+    {
+      icon = 'pin-blue'
+    }
     const feature = new atlas.data.Feature(point, {
-      icon: 'pin-red',
+      icon: icon,
       name: data.name,
       type: data.type,
       title: data.name,
