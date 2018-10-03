@@ -1,14 +1,14 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {AtlasMapComponent, LoadMapService} from "@acaisoft/angular-azure-maps";
 import {AmFeature} from "@acaisoft/angular-azure-maps/src/azure-map/interfaces/am-feature";
-import {dataMock} from "../../data";
+import {dataSprite} from "../../data";
 
 @Component({
-  selector: 'app-simple-pin',
-  templateUrl: './simple-pin.component.html',
-  styleUrls: ['./simple-pin.component.css']
+  selector: 'app-custom-sprite',
+  templateUrl: './custom-sprite.component.html',
+  styleUrls: ['./custom-sprite.component.css']
 })
-export class SimplePinComponent implements OnInit {
+export class CustomSpriteComponent implements OnInit {
 
   @ViewChild('maper') maper: AtlasMapComponent;
 
@@ -21,13 +21,10 @@ export class SimplePinComponent implements OnInit {
   featuresArray: AmFeature[] = [];
 
 
-  constructor(private mapService: LoadMapService) { }
+  constructor(public mapService: LoadMapService) { }
 
 
   ngOnInit() {
-    /**
-     * That way to lazy load map
-     */
     this.mapService.load().toPromise().then(() => {
       atlas.setSubscriptionKey(this.key);
     })
@@ -37,27 +34,30 @@ export class SimplePinComponent implements OnInit {
     console.log('GEOCORDS: ', $event)
   }
 
+  init() {
+    this.initPoint()
+  }
+
+  addSprite() {
+
+    this.maper.map.imageSprite.add('my-pin', '../../../assets/eye-crossed.svg')
+    this.maper.map.imageSprite.add('git', '../../../assets/github-small.svg').then(()=> {
+      this.init()
+    })
+  }
+
+  removeSprite() {
+    this.maper.map.removeLayers(this.maper.findUniqueLayers(this.featuresArray))
+  }
+
   initPoint() {
-    dataMock.forEach(value => {
+    dataSprite.forEach(value => {
       this.featuresArray.push(this.mergeDataPoint(value))
     });
     this.maper.createPoints(this.featuresArray);
     console.log('Thats your features Array: ', this.featuresArray)
     this.maper.createPopups(this.featuresArray);
   }
-
-  init() {
-    this.initPoint()
-  }
-
-  updatePoints() {
-    this.maper.updatePoints(this.featuresArray)
-  }
-
-  removePoints() {
-    this.maper.map.removeLayers(this.maper.findUniqueLayers(this.featuresArray))
-  }
-
 
   dataPointsInit(data): atlas.data.Feature {
     /**
@@ -66,10 +66,10 @@ export class SimplePinComponent implements OnInit {
      */
     const pos = new atlas.data.Position(data.localization.lng, data.localization.lnt);
     const point = new atlas.data.Point(pos);
-    let icon = 'pin-red'
-    if(data.type === 'Office')
+    let icon = 'my-pin'
+    if(data.type === 'GH')
     {
-      icon = 'pin-blue'
+      icon = 'git'
     }
     const feature = new atlas.data.Feature(point, {
       icon: icon,
@@ -97,8 +97,6 @@ export class SimplePinComponent implements OnInit {
       pinConfig: this.dataLayerOptions(data.type)
     } as AmFeature
   }
-
-
 
 
 }

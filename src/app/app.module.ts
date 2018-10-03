@@ -7,6 +7,7 @@ import {RouterModule, Routes} from "@angular/router";
 import { SimplePinComponent } from './dashboard/simple-pin/simple-pin.component';
 import {AmModule, LoadMapService} from "@acaisoft/angular-azure-maps";
 import { LazyLoadComponent } from './dashboard/lazy-load/lazy-load.component';
+import { CustomSpriteComponent } from './dashboard/custom-sprite/custom-sprite.component';
 
 const appRoutes: Routes = [
   {
@@ -19,11 +20,13 @@ const appRoutes: Routes = [
     component: LazyLoadComponent,
     data: { title: 'Lazy Load' }
   },
-  { path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
-  }
+  {
+    path: 'customsprite',
+    component: CustomSpriteComponent,
+    data: { title: 'Custom Sprite' }
+  },
 ];
+
 
 
 @NgModule({
@@ -31,7 +34,8 @@ const appRoutes: Routes = [
     AppComponent,
     DashboardComponent,
     SimplePinComponent,
-    LazyLoadComponent
+    LazyLoadComponent,
+    CustomSpriteComponent
   ],
   imports: [
     BrowserModule,

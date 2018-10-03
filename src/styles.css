@@ -8,3 +8,22 @@ a {
   max-height: 2rem;
   margin-right: .3rem;
 }
+
+.example_header {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+
+.example_header .git {
+  float: right;
+}
+
+.container {
+  margin-top: 1rem;
+  min-width: 10rem;
+  min-height: 10rem;
+  border: .4rem solid #92c7e6;
+  width: 50rem;
+  height: 30rem;
+}

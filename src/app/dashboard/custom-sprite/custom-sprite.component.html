@@ -1,0 +1,19 @@
+
+<div class="example_header">
+  <div class="git">
+    <a href="https://github.com/srednicki95/am_samples/tree/master/src/app/dashboard/custom-sprite"><img class="img" src="../../../assets/github-icon.png"> GitHubLink</a>
+  </div>
+  <div class="description">
+    Custom Sprite example:
+  </div>
+</div>
+<span>
+  <button (click)="addSprite()">Load Sprites</button>
+  <button (click)="removeSprite()">Remove Sprites</button>
+<div class="container"  *ngIf="mapService.isLoaded">
+  <am-map #maper
+          [initialConfig]="config"
+          [_id]="'id'"
+          (onMapClick)="getPos($event)" >
+  </am-map>
+</div>
