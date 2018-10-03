@@ -10,6 +10,7 @@ import { LazyLoadComponent } from './dashboard/lazy-load/lazy-load.component';
 import { CustomSpriteComponent } from './dashboard/custom-sprite/custom-sprite.component';
 import { InfoComponent } from './dashboard/info/info.component';
 import { CurrentPositionComponent } from './dashboard/current-position/current-position.component';
+import { AnimationComponent } from './dashboard/animation/animation.component';
 
 const appRoutes: Routes = [
   {
@@ -33,6 +34,11 @@ const appRoutes: Routes = [
     data: { title: 'Current Position' }
   },
   {
+    path: 'animation',
+    component: AnimationComponent,
+    data: { title: 'Animation' }
+  },
+  {
     path: '',
     component: InfoComponent,
     data: { title: 'Info' }
@@ -49,7 +55,8 @@ const appRoutes: Routes = [
     LazyLoadComponent,
     CustomSpriteComponent,
     InfoComponent,
-    CurrentPositionComponent
+    CurrentPositionComponent,
+    AnimationComponent
   ],
   imports: [
     BrowserModule,
