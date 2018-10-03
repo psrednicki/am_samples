@@ -1,9 +1,11 @@
 <p>
-  Hello <span>
-<button (click)="click()">CLCK</button>
-<button (click)="click2()">CLCK2</button>
-</span>
+  Simple pin example:
+<a href="https://github.com/srednicki95/am_samples/tree/master/src/app/dashboard/simple-pin">Github link</a>
 </p>
+<span>
+<button (click)="click()">Load PINS</button>
+</span>
+
 <div class="container"  *ngIf="mapService.isLoaded">
   <am-map #maper
           [initialConfig]="config"

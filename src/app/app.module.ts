@@ -8,11 +8,10 @@ import { SimplePinComponent } from './dashboard/simple-pin/simple-pin.component'
 import {AmModule, LoadMapService} from "@acaisoft/angular-azure-maps";
 
 const appRoutes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
   {
-    path: 'heroes',
-    component: DashboardComponent,
-    data: { title: 'Heroes List' }
+    path: 'simplepin',
+    component: SimplePinComponent,
+    data: { title: 'Simple Pin' }
   },
   { path: '',
     redirectTo: '/dashboard',

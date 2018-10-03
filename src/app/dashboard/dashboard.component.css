@@ -1,0 +1,18 @@
+.header {
+  text-align: center;
+}
+
+
+.nav {
+  min-width: 10rem;
+  border: solid 3px black;
+  position: fixed;
+}
+
+
+.content {
+  min-height: 10rem;
+  min-width: 10rem;
+  position: fixed;
+  margin-left: 24rem;
+}
