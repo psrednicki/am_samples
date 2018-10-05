@@ -11,6 +11,7 @@ import { CustomSpriteComponent } from './dashboard/custom-sprite/custom-sprite.c
 import { InfoComponent } from './dashboard/info/info.component';
 import { CurrentPositionComponent } from './dashboard/current-position/current-position.component';
 import { AnimationComponent } from './dashboard/animation/animation.component';
+import { DifferComponent } from './dashboard/differ/differ.component';
 
 const appRoutes: Routes = [
   {
@@ -43,6 +44,11 @@ const appRoutes: Routes = [
     component: InfoComponent,
     data: { title: 'Info' }
   },
+  {
+    path: 'diff',
+    component: DifferComponent,
+    data: { title: 'Differ' }
+  },
 ];
 
 
@@ -56,7 +62,8 @@ const appRoutes: Routes = [
     CustomSpriteComponent,
     InfoComponent,
     CurrentPositionComponent,
-    AnimationComponent
+    AnimationComponent,
+    DifferComponent
   ],
   imports: [
     BrowserModule,
