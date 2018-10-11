@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@acaisoft/angular-azure-maps": "0.0.13",
+    "@acaisoft/angular-azure-maps": "1.0.0",
     "@angular/animations": "^6.0.3",
     "@angular/common": "6.1.7",
     "@angular/compiler": "6.1.7",

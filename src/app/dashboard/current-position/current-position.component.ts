@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AtlasMapComponent, LoadMapService} from "@acaisoft/angular-azure-maps";
+import {KeyService} from "../Utils/key.service";
 
 @Component({
   selector: 'app-current-position',
@@ -10,12 +11,14 @@ export class CurrentPositionComponent implements OnInit, OnDestroy {
 
   @ViewChild('maper') maper: AtlasMapComponent;
 
-  key: string = 'tTk1JVEaeNvDkxxnxHm9cYaCvqlOq1u-fXTvyXn2XkA';
+  key: string = '';
 
-  constructor(public mapService: LoadMapService) {
+  constructor(public mapService: LoadMapService,
+              private keyService: KeyService) {
   }
 
   ngOnInit() {
+    this.key = this.keyService.getKey();
     this.mapService.load().toPromise().then(() => {
       atlas.setSubscriptionKey(this.key);
     })

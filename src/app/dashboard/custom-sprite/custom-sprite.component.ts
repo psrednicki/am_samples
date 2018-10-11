@@ -4,6 +4,7 @@ import {AmFeature} from "@acaisoft/angular-azure-maps/src/azure-map/interfaces/a
 import {dataSprite} from "../../data";
 import {Observable} from "rxjs/internal/Observable";
 import {debug} from "util";
+import {KeyService} from "../Utils/key.service";
 
 @Component({
   selector: 'app-custom-sprite',
@@ -19,16 +20,18 @@ export class CustomSpriteComponent implements OnInit, OnDestroy {
     'center': [-20, 20],
     'interactive': true,
   };
-  key: string = 'tTk1JVEaeNvDkxxnxHm9cYaCvqlOq1u-fXTvyXn2XkA';
+  key: string = '';
   featuresArray: AmFeature[] = [];
   isFirst: boolean = true;
 
 
-  constructor(public mapService: LoadMapService) {
+  constructor(public mapService: LoadMapService,
+              private keyService: KeyService) {
   }
 
 
   ngOnInit() {
+    this.key = this.keyService.getKey();
     // script and styles loaded
     this.mapService.load().toPromise().then(() => {
       // set key
