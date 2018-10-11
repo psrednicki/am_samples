@@ -1,7 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import { diff, addedDiff, deletedDiff, updatedDiff, detailedDiff } from 'deep-object-diff';
 import {datacenters} from "../../datacenters";
 import {datacenters2} from "../../datacenters2";
+import {diffFunction} from "./utils/diff-fnc";
+import {addedDiff, deletedDiff, detailedDiff, diff, updatedDiff} from "deep-object-diff";
 
 
 @Component({
@@ -11,7 +12,8 @@ import {datacenters2} from "../../datacenters2";
 })
 export class DifferComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
@@ -40,18 +42,90 @@ export class DifferComponent implements OnInit, AfterViewInit {
     buzz: 'fizz' // updated
   };
 
+  dataCenter1 = {
+    id: 1,
+    name: "DC1",
+    healthy: true,
+    localization:
+      {
+        lnt: 21,
+        lng: 20
+      },
+    gateways: [
+      {
+        id: 1,
+        status: 'UNREACHABLE',
+        links: 'http://www.google.ch'
+      },
+      {
+        id: 2,
+        status: 'ONLINE',
+        links: 'http://www.onet.pl'
+      },
+      {
+        id: 3,
+        status: 'ONLINE',
+        links: 'http://www.vp.pl'
+      },
+      {
+        id: 4,
+        status: 'TERMINATED',
+        links: 'http://www.niebezpiecznik.pl'
+      }
+
+    ]
+  }
+
+  dataCenter1_aft = {
+    id: 2,
+    name: "DC1",
+    healthy: true,
+    localization:
+      {
+        lnt: 21,
+        lng: 20
+      },
+    gateways: [
+      {
+        id: 1,
+        status: 'UNREACHABLE',
+        links: 'http://www.google.ch'
+      },
+      {
+        id: 2,
+        status: 'UNREACHABLE',
+        links: 'http://www.onet.pl'
+      },
+      {
+        id: 3,
+        status: 'ONLINE',
+        links: 'http://www.vp.pl'
+      },
+      {
+        id: 4,
+        status: 'TERMINATED',
+        links: 'http://www.niebezpiecznik.pl'
+      }
+
+    ]
+  }
+
   dc1 = datacenters;
   dc2 = datacenters2;
 
   ngAfterViewInit(): void {
-    console.log('DIFF:', diff(this.lhs, this.rhs))
-    console.log('ADDED: ', addedDiff(this.lhs, this.rhs))
+    console.log('DIFF', diffFunction(this.dc1, this.dc2, 'status', true));
+    console.log('DIFF EASY', diffFunction(this.dataCenter1, this.dataCenter1_aft, 'id', true))
 
-    console.log('DIFF',diff(this.dc1, this.dc2))
-    console.log('Added',addedDiff(this.dc1, this.dc2))
-    console.log('deleted',deletedDiff(this.dc1, this.dc2))
-    console.log('updated',updatedDiff(this.dc1, this.dc2))
-    console.log('detailed',deletedDiff(this.dc1, this.dc2))
+    console.log('UPDATED', updatedDiff(this.dataCenter1, this.dataCenter1_aft))
+    console.log('ADDED', addedDiff(this.dataCenter1, this.dataCenter1_aft))
+    console.log('DIFF', diff(this.dataCenter1, this.dataCenter1_aft))
+    console.log('DELETED', deletedDiff(this.dataCenter1, this.dataCenter1_aft))
+    console.log('DETAILED', detailedDiff(this.dataCenter1, this.dataCenter1_aft))
+  }
+
+  whatDiffrenet(tab1, tab2) {
+
   }
 
 }
