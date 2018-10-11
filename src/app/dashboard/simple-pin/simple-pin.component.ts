@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AtlasMapComponent, LoadMapService} from "@acaisoft/angular-azure-maps";
 import {AmFeature} from "@acaisoft/angular-azure-maps/src/azure-map/interfaces/am-feature";
 import {dataMock} from "../../data";
+import {KeyService} from "../Utils/key.service";
 
 @Component({
   selector: 'app-simple-pin',
@@ -21,13 +22,21 @@ export class SimplePinComponent implements OnInit, OnDestroy {
   featuresArray: AmFeature[] = [];
 
 
-  constructor(private mapService: LoadMapService) { }
+  constructor(private mapService: LoadMapService,
+              private keyService: KeyService) {
+  }
 
 
   ngOnInit() {
     /**
+     * You need add your key go display map or use API
+     */
+    this.key = this.keyService.getKey();
+
+    /**
      * That way to lazy load map
      */
+
     this.mapService.load().toPromise().then(() => {
       atlas.setSubscriptionKey(this.key);
     })
@@ -99,6 +108,8 @@ export class SimplePinComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    console.log(atlas)
+    console.log('MAPI', this.maper)
     this.maper.map.remove()
   }
 

@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AtlasMapComponent, LoadMapService} from "@acaisoft/angular-azure-maps";
 import {animate} from "@angular/animations";
 import {timestamp} from "rxjs/operators";
+import {KeyService} from "../Utils/key.service";
 
 @Component({
   selector: 'app-animation',
@@ -12,15 +13,17 @@ export class AnimationComponent implements OnInit, OnDestroy {
 
   @ViewChild('maper') maper: AtlasMapComponent;
   // key is nessecary to show your map
-  key: string = 'tTk1JVEaeNvDkxxnxHm9cYaCvqlOq1u-fXTvyXn2XkA';
+  key: string = '';
   activeIntervals: any[] = [];
   markerCounter: number = 0;
   pinCounter: number = 0;
 
-  constructor(public mapService: LoadMapService) {
+  constructor(public mapService: LoadMapService,
+              private keyService: KeyService) {
   }
 
   ngOnInit() {
+    this.key = this.keyService.getKey();
     // that will lazy loaded azure map script and styles
     this.mapService.load().toPromise().then(() => {
       atlas.setSubscriptionKey(this.key);
@@ -30,7 +33,7 @@ export class AnimationComponent implements OnInit, OnDestroy {
   addMarker() {
       //Create a HTML marker and add it to the map.
       let marker = new atlas.HtmlMarker({
-        htmlContent: '<image class="supa"  src="../../../assets/eye-crossed.svg"/>',
+        htmlContent: '<image class="element"  src="../../../assets/eye-crossed.svg"/>',
         position: this.randomCoords()
       });
       this.maper.map.markers.add(marker);
