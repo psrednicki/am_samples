@@ -3,6 +3,9 @@ import {AtlasMapComponent, LoadMapService} from "@acaisoft/angular-azure-maps";
 import {AmFeature} from "@acaisoft/angular-azure-maps/src/azure-map/interfaces/am-feature";
 import {dataMock} from "../../data";
 import {KeyService} from "../Utils/key.service";
+import PinLayerOptions = Models.deprecated.PinLayerOptions;
+import SymbolLayerOptions = Models.SymbolLayerOptions;
+import Layer = atlas.layer.Layer;
 
 @Component({
   selector: 'app-simple-pin',
@@ -48,6 +51,7 @@ export class SimplePinComponent implements OnInit, OnDestroy {
 
   initPoint() {
     dataMock.forEach(value => {
+      console.log(value)
       this.featuresArray.push(this.mergeDataPoint(value))
     });
     this.maper.createPoints(this.featuresArray);
@@ -56,19 +60,30 @@ export class SimplePinComponent implements OnInit, OnDestroy {
   }
 
   init() {
-    this.initPoint()
+    this.initPoint();
+    this.addLayer();
   }
 
   updatePoints() {
     this.maper.updatePoints(this.featuresArray)
+    this.addLayer();
   }
 
   removePoints() {
-    this.maper.map.removeLayers(this.maper.findUniqueLayers(this.featuresArray))
+     this.maper.map.layers.remove(this.maper.findUniqueLayers(this.featuresArray));
+
+  }
+
+  addLayer() {
+    this.maper.findUniqueLayers(this.featuresArray).forEach(value => {
+      let lay = new atlas.layer.SymbolLayer(value);
+      console.log('lay', lay)
+      this.maper.map.layers.add(lay);
+    });
   }
 
 
-  dataPointsInit(data): atlas.data.Feature {
+  dataPointsInit(data): atlas.data.Feature<any, any> {
     /**
      * Azure notation of position: [LONGITUDE, LATITUDE] [-180, 180] [-90, 90]
      * @type atlas.data.Position
@@ -89,11 +104,15 @@ export class SimplePinComponent implements OnInit, OnDestroy {
     return feature;
   }
 
-  dataLayerOptions(item): PinLayerOptions {
-    const pinOptions: PinLayerOptions = {
-      name: item,
-      textFont: 'SegoeUi-Bold',
-      textOffset: [0, 25],
+  dataLayerOptions(item): SymbolLayerOptions {
+    const pinOptions: SymbolLayerOptions = {
+      source: item,
+      textOptions: {
+        offset: [100, 46],
+        font: ['SegoeUi-Bold'],
+        ignorePlacement: true
+      }
+
     };
     return pinOptions;
   }
@@ -110,7 +129,7 @@ export class SimplePinComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     console.log(atlas)
     console.log('MAPI', this.maper)
-    this.maper.map.remove()
+    this.maper.map.dispose()
   }
 
 

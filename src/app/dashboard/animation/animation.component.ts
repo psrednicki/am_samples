@@ -59,6 +59,7 @@ export class AnimationComponent implements OnInit, OnDestroy {
     this.maper.map.sources.add(datasource);
     //Create a layer that defines how to render the shapes in the data source and add it to the map.
     this.maper.map.layers.add(new atlas.layer.SymbolLayer(datasource, null, {
+      source: datasource,
       iconOptions: {
         allowOverlap: true    //To ensure smooth rendering when animating, allow symbol to overlap all other symbols on the map.
       }

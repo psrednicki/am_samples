@@ -5,6 +5,7 @@ import {dataSprite} from "../../data";
 import {Observable} from "rxjs/internal/Observable";
 import {debug} from "util";
 import {KeyService} from "../Utils/key.service";
+import PinLayerOptions = Models.deprecated.PinLayerOptions;
 
 @Component({
   selector: 'app-custom-sprite',
@@ -19,6 +20,7 @@ export class CustomSpriteComponent implements OnInit, OnDestroy {
     'zoom': 1.5,
     'center': [-20, 20],
     'interactive': true,
+    'style': 'grayscale_dark'
   };
   key: string = '';
   featuresArray: AmFeature[] = [];
@@ -50,23 +52,17 @@ export class CustomSpriteComponent implements OnInit, OnDestroy {
    * Use that mapLoaded to avoid errors
    */
   mapLoaded() {
-    // Check if ViewChild is correctly init
-    if (this.maper && this.mapService.isLoaded) {
-      // use that function to load sprites to map
-      this.maper.map.events.add('load', (e) => {
-        Promise.all([
-          // Add sprite to map as icon
-          this.maper.map.imageSprite.add('my-pin', '../../../assets/eye-crossed.svg'),
-          this.maper.map.imageSprite.add('git', '../../../assets/github-small.svg')
-        ]).then((e) => {
-          this.isFirst = false;
-          this.initPoint();
-        })
-      })
-    } else {
-      setTimeout(() => this.mapLoaded(), 400)
-    }
-
+    /**
+     * Before add image Spirte, you need to load it
+     */
+    Promise.all([
+      // Add sprite to map as icon
+      this.maper.map.imageSprite.add('my-pin', '../../../assets/eye-crossed.svg'),
+      this.maper.map.imageSprite.add('git', '../../../assets/github-small.svg')
+    ]).then((e) => {
+      this.isFirst = false;
+      this.initPoint();
+    })
   }
 
 
@@ -83,7 +79,7 @@ export class CustomSpriteComponent implements OnInit, OnDestroy {
     this.maper.createPopups(this.featuresArray);
   }
 
-  dataPointsInit(data): atlas.data.Feature {
+  dataPointsInit(data): atlas.data.Feature<any, any> {
     /**
      * Azure notation of position: [LONGITUDE, LATITUDE] [-180, 180] [-90, 90]
      * @type atlas.data.Position
