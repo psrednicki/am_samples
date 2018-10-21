@@ -46,10 +46,12 @@ export class CurrentPositionComponent implements OnInit, OnDestroy {
           this.maper.map.layers.add([
             //Create a polygon layer to render the filled in area of the accuracy circle for the users position.
             new atlas.layer.PolygonLayer(datasource, null, {
+              source: datasource,
               fillColor: 'rgba(0, 153, 255, 0.5)'
             }),
             //Create a symbol layer to render the users position on the map.
             new atlas.layer.SymbolLayer(datasource, null, {
+              source: datasource,
               filter: ['==', '$type', 'Point']
             })
           ]);

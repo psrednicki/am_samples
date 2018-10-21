@@ -11,6 +11,7 @@ import { CustomSpriteComponent } from './dashboard/custom-sprite/custom-sprite.c
 import { InfoComponent } from './dashboard/info/info.component';
 import { CurrentPositionComponent } from './dashboard/current-position/current-position.component';
 import { AnimationComponent } from './dashboard/animation/animation.component';
+import { DraggableIconComponent } from './dashboard/draggable-icon/draggable-icon.component';
 
 const appRoutes: Routes = [
   {
@@ -39,10 +40,16 @@ const appRoutes: Routes = [
     data: { title: 'Animation' }
   },
   {
+    path: 'draggable-icon',
+    component: DraggableIconComponent,
+    data: { title: 'Draggable Icon' }
+  },
+  {
     path: '',
     component: InfoComponent,
     data: { title: 'Info' }
   },
+
 ];
 
 
@@ -56,7 +63,8 @@ const appRoutes: Routes = [
     CustomSpriteComponent,
     InfoComponent,
     CurrentPositionComponent,
-    AnimationComponent
+    AnimationComponent,
+    DraggableIconComponent
   ],
   imports: [
     BrowserModule,

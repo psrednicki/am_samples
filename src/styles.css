@@ -28,6 +28,12 @@ a {
   height: 30rem;
 }
 
+.pulseMarker {
+  background-image: url("assets/coffepin.png");
+  width: 10rem;
+  height: 10rem;
+}
+
 
 .element {
   animation: pulse 5s infinite;
@@ -37,7 +43,43 @@ a {
   0% {
     background-color: #001F3F;
   }
+  50% {
+    background-color: #ffd21a;
+  }
   100% {
     background-color: #FF4136;
+  }
+}
+
+.lds-circle {
+  display: inline-block;
+  width: 51px;
+  height: 51px;
+  margin: 6px;
+  border-radius: 50%;
+  background: #fff;
+  animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+@keyframes lds-circle {
+  0%, 100% {
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+    background-color: #003069;
+
+  }
+  0% {
+    transform: rotateY(0deg);
+    background-color: #a85736;
+
+  }
+  50% {
+    transform: rotateY(1800deg);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+    background-color: #45bb6a;
+
+  }
+  100% {
+    transform: rotateY(3600deg);
+    background-color: #2b5a6c;
+
   }
 }
