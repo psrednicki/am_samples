@@ -24,7 +24,6 @@ export class CustomSpriteComponent implements OnInit, OnDestroy {
   };
   key: string = '';
   featuresArray: AmFeature[] = [];
-  isFirst: boolean = true;
 
 
   constructor(public mapService: LoadMapService,
@@ -33,6 +32,8 @@ export class CustomSpriteComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+
+    // Key its necessary to get response from AzureMap API
     this.key = this.keyService.getKey();
     // script and styles loaded
     this.mapService.load().toPromise().then(() => {
@@ -60,14 +61,13 @@ export class CustomSpriteComponent implements OnInit, OnDestroy {
       this.maper.map.imageSprite.add('my-pin', '../../../assets/eye-crossed.svg'),
       this.maper.map.imageSprite.add('git', '../../../assets/github-small.svg')
     ]).then((e) => {
-      this.isFirst = false;
       this.initPoint();
     })
   }
 
 
   removeSprite() {
-    this.maper.map.removeLayers(this.maper.findUniqueLayers(this.featuresArray))
+    this.maper.map.layers.remove(this.maper.findUniqueLayers(this.featuresArray))
   }
 
   initPoint() {

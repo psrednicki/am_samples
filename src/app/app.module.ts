@@ -12,6 +12,7 @@ import { InfoComponent } from './dashboard/info/info.component';
 import { CurrentPositionComponent } from './dashboard/current-position/current-position.component';
 import { AnimationComponent } from './dashboard/animation/animation.component';
 import { DraggableIconComponent } from './dashboard/draggable-icon/draggable-icon.component';
+import { CustomPinComponent } from './dashboard/custom-pin/custom-pin.component';
 
 const appRoutes: Routes = [
   {
@@ -45,6 +46,11 @@ const appRoutes: Routes = [
     data: { title: 'Draggable Icon' }
   },
   {
+    path: 'custom-pin',
+    component: CustomPinComponent,
+    data: { title: 'Custom Pin' }
+  },
+  {
     path: '',
     component: InfoComponent,
     data: { title: 'Info' }
@@ -64,7 +70,8 @@ const appRoutes: Routes = [
     InfoComponent,
     CurrentPositionComponent,
     AnimationComponent,
-    DraggableIconComponent
+    DraggableIconComponent,
+    CustomPinComponent
   ],
   imports: [
     BrowserModule,
