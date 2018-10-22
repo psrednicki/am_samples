@@ -10,7 +10,7 @@ export class KeyService {
   * TO RUN EXAMPLES INSERT YOUR AZURE MAP KEY HER
   * KEY IN NECESSARY TO DISPLAY MAP OR USE API
    */
-  key: string = '<--YOUR-KEY-->';
+  key: string = 'tTk1JVEaeNvDkxxnxHm9cYaCvqlOq1u-fXTvyXn2XkA';
 
   constructor() {
   }

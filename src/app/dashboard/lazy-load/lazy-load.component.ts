@@ -12,17 +12,15 @@ export class LazyLoadComponent implements OnInit, OnDestroy {
 
   @ViewChild('maper') maper: AtlasMapComponent;
   // key is nessecary to show your map
-  key: string = '';
 
   constructor(public mapService: LoadMapService,
               private keyService: KeyService) {
   }
 
   ngOnInit() {
-    this.key = this.keyService.getKey();
     // that will lazy loaded azure map script and styles
     this.mapService.load().toPromise().then(() => {
-      atlas.setSubscriptionKey(this.key);
+      atlas.setSubscriptionKey(this.keyService.getKey());
     })
   }
 
@@ -32,7 +30,7 @@ export class LazyLoadComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.maper.map.remove()
+    this.maper.removeMap();
   }
 
 }

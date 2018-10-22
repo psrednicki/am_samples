@@ -21,7 +21,7 @@ export class SimplePinComponent implements OnInit, OnDestroy {
     'center': [-20,20],
     'interactive': true,
   };
-  key: string = 'tTk1JVEaeNvDkxxnxHm9cYaCvqlOq1u-fXTvyXn2XkA';
+  key: string = '';
   featuresArray: AmFeature[] = [];
 
 
@@ -75,7 +75,10 @@ export class SimplePinComponent implements OnInit, OnDestroy {
   }
 
   addLayer() {
+    console.log('Featires array',this.featuresArray)
+    console.log('Featires array',    this.maper.findUniqueLayers(this.featuresArray));
     this.maper.findUniqueLayers(this.featuresArray).forEach(value => {
+      console.log('VALUE', value)
       let lay = new atlas.layer.SymbolLayer(value);
       console.log('lay', lay)
       this.maper.map.layers.add(lay);
